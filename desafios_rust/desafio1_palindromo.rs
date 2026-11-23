@@ -1,10 +1,13 @@
-/// Desafío 1: Palíndromos
-/// Determina si una cadena ingresada por el usuario es un palíndromo,
-/// ignorando espacios, puntuación y capitalización.
+/// Desafio 1: Palindromos
+/// Determina si una cadena ingresada por el usuario es un palindromo,
+/// ignorando espacios, puntuacion y capitalizacion
 
+
+
+//use es el import de python std::io es el modulo para entrada/salida (teclado y pantalla). con {} importas varias cosas a la vez
 use std::io::{self, Write};
 
-/// Limpia la cadena: convierte a minúsculas y retiene solo caracteres alfanuméricos.
+
 fn limpiar(s: &str) -> String {
     s.chars()
         .filter(|c| c.is_alphanumeric())
@@ -12,17 +15,19 @@ fn limpiar(s: &str) -> String {
         .collect()
 }
 
-/// Verifica si la cadena limpia es un palíndromo.
+/// Verifica si la cadena limpia es un palindromo.
 fn es_palindromo(s: &str) -> bool {
+    
     let limpio = limpiar(s);
+
     let invertido: String = limpio.chars().rev().collect();
     limpio == invertido
 }
 
+// main es donde arranca todo programa de Rust
 fn main() {
     print!("Ingresa una palabra o frase: ");
     io::stdout().flush().unwrap();
-
     let mut entrada = String::new();
     io::stdin().read_line(&mut entrada).unwrap();
     let entrada = entrada.trim();
@@ -32,15 +37,20 @@ fn main() {
         return;
     }
 
+ 
     if es_palindromo(entrada) {
-        println!("\"{}\" ES un palíndromo ✓", entrada);
+        println!("\"{}\" ES un palindromo ✓", entrada);
     } else {
-        println!("\"{}\" NO es un palíndromo ✗", entrada);
+        println!("\"{}\" NO es un palindromo ✗", entrada);
     }
 }
 
+//estos test no son parte del programa principal buscan revisar el funcionamiento
+//rustc .\desafio1_palindromo.rs
 #[cfg(test)]
+
 mod tests {
+   
     use super::*;
 
     #[test]
